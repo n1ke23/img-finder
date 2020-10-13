@@ -1,6 +1,4 @@
 
- const apiKey = '18623544-b4f5dbb9e909edd8c116f4e97';
- const baseURL = "https://pixabay.com/api/";
  // let query = 'js';
  // let page = 1;
  // let perPage = 12;
@@ -10,13 +8,15 @@
    page: 1, 
    perPage: 12,
    async fetchImages(){
-     let url = `${baseURL}?image_type=photo&orientation=horizontal&q=${this._query}&page=${this.page}&per_page=${this.perPage}&key=${apiKey}`;
+     this.apiKey = '18623544-b4f5dbb9e909edd8c116f4e97';
+     this.baseURL = "https://pixabay.com/api/";
+     this.url = `${this.baseURL}?image_type=photo&orientation=horizontal&q=${this._query}&page=${this.page}&per_page=${this.perPage}&key=${this.apiKey}`;
      try {
-        const res = await fetch(url)
-        const getResponse = await res.json()
+        this.res = await fetch(this.url)
+        this.getResponse = await this.res.json()
       }
-      catch(error) {throw error}
-      return getResponse
+      catch(error) {throw displayError(error)}
+      return this.getResponse.hits
   },
   setPage(){
     return this.page++
@@ -31,6 +31,6 @@
 function displayError (error) {
   const errorH2 = document.createElement('h2');
   errorH2.textContent = error;
-  // refs.body.insertAdjacentElement('afterbegin', errorH2)
   refs.body.prepend(errorH2)
+  
 }

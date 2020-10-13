@@ -1,7 +1,11 @@
 import css from "./css/style.css";
-import renderApi from './js/renderApi'
+import './js/renderApi'
 ;
 
+
+
+
+// console.log('Test');
 
 // fetch()
 
